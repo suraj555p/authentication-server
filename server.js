@@ -7,7 +7,12 @@ const authRoutes = require('./routes/auth.route'); // Adjust path as necessary
 dotenv.config();
 
 const app = express();
-app.use(cors());
+// Set up CORS options
+const corsOptions = {
+    origin: ['http://localhost:3000','https://admin-pannel-one.vercel.app/'], 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],  
+  };
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Connect to MongoDB
