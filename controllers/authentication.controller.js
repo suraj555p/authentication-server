@@ -23,10 +23,9 @@ exports.register = async (req, res) => {
         await newUser.save();
 
         // Generate a token
-        // const token = jwt.sign({ id: newUser.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-       // Send success response
-       res.status(201).json({ message: "Registration is completed!!!" });
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Send success response
+        res.status(201).json({ message: "Registration is completed!!!" });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error. Please try again later.' });
@@ -51,7 +50,7 @@ exports.login = async (req, res) => {
         }
 
         // Generate a token
-        // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.status(201).json({ message: "Login is completed!!!" });
 
